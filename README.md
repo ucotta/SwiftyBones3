@@ -71,7 +71,7 @@ Lets take a look at what is each of these directories starting with the Sources 
 
 ###Sources Directory
 
-Note: this secti￿on is outdated (it did not use new package manager).
+Note: this section is outdated (it did not use new package manager).
 
 The Sources directory contains the Swift source files that make up the SwiftyBones library.  Currently there are three files which are:
 -  SwiftyBonesCommon.swift:  This file contains common code which is required for interacting with both analog and digital GPIOs.
