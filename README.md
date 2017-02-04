@@ -14,47 +14,64 @@ SwiftyBones also has a new component library to make it easy to various componen
 
 ## Installation
 
-The following steps will install Swift 3 on a the standard Debian 8.4 image.  NOTE:  This is for the 8/16/2016 build of Swift 3:
+The following steps will install Swift 3 on a the standard Debian 8.4 image.  NOTE:  This is for the 9/22/2016 build of Swift 3:
 ```
 apt-get install libicu-dev
 apt-get install clang-3.6
 update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.6 100
 update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.6 100
 
-wget http://swift-arm.ddns.net/job/Swift-3.0-ARM-Incremental/105/artifact/swift-3.0-2016-08-16-BBB-ubuntu14.04.tar.gz
+wget http://swift-arm.ddns.net/job/Swift-3.0-BBB-ARM-Incremental/144/artifact/swift-3.0-2016-09-22-BBB-ubuntu14.04.tar.gz
 
-mkdir -p /opt/swift/swift-8-16-2016
-cd /opt/swift/swift-8-16-2016
-mv ~/swift-3.0-2016-08-16-BBB-ubuntu14.04.tar.gz ./
-tar xvfz swift-3.0-2016-08-16-BBB-ubuntu14.04.tar.gz
+mkdir -p /opt/swift/swift-2016-09-22
+cd /opt/swift/swift-2016-09-22
+mv ~/swift-3.0-2016-09-22-BBB-ubuntu14.04.tar.gz ./
+tar xvfz swift-3.0-2016-09-22-BBB-ubuntu14.04.tar.gz
 
-ln -s /opt/swift/swift-8-16-2016/ /opt/swift/swift-current
+ln -s /opt/swift/swift-2016-09-22/ /opt/swift/swift-current
 
 Add to the end of /etc/profile:
 PATH=$PATH:/opt/swift/swift-current/usr/bin/
 
 ```
 
-The Package Manager is not available by default with Swift 3 on ARM therefore you will need to download the zip archive for SwiftyBones with the following command:  
-```
-wget https://github.com/hoffmanjon/SwiftyBones3/archive/master.zip
-```
+Close the sessi￿ón to reload settings in profile.
 
-Once the archive is downloaded, you can unzip it using the following command:
+Since The Package Manager is supported by Swift 3 on ARM, is not necessary to download the zip anymore. Just prepare a swift package
 
 ```
-unzip master.zip
+mkdir testing
+cd testing
+swift package init
 ```
 
-Once the archive is unzipped you should see the following four directorie:
+Edit the package.swift, add the SwiftBones3 package depedency. Your package.swift ma be similar to this one
+
+
+```
+import PackageDescription
+
+let package = Package(
+    name: "testing",
+    dependencies: [
+        .Package(url: "https://github.com/hoffmanjon/SwiftyBones3.git", majorVersion: 0)
+    ]
+)
+```
+
+Now you can build your package with swift build.
+
+The BeagleBone3 package contains the following four directorie:
 -  Sources:  The SwiftyBones source files
--  swiftybuild:  The swiftybuild script to help you compile your Swift projects
+-  swiftybuild:  The swiftybuild script to help you compile your Swift projects (uc: to delete?)
 -  Examples:  Example projects to help you get started with SwiftyBones
 -  Images:  Images needed for this README like the SwiftyBones logo
 
 Lets take a look at what is each of these directories starting with the Sources directory.
 
 ###Sources Directory
+
+Note: this secti￿on is outdated (it did not use new package manager).
 
 The Sources directory contains the Swift source files that make up the SwiftyBones library.  Currently there are three files which are:
 -  SwiftyBonesCommon.swift:  This file contains common code which is required for interacting with both analog and digital GPIOs.
