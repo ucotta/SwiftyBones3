@@ -35,7 +35,7 @@ PATH=$PATH:/opt/swift/swift-current/usr/bin/
 
 ```
 
-Close the sessi￿ón to reload settings in profile.
+Close the sessi￿on to reload settings in profile.
 
 Since The Package Manager is supported by Swift 3 on ARM, is not necessary to download the zip anymore. Just prepare a swift package
 
